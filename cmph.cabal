@@ -8,7 +8,7 @@ Author:		Mark Wotton <mwotton@gmail.com>
 Maintainer:	Mark Wotton <mwotton@gmail.com>
 Category:	Data, Data Structures
 Stability:	Experimental
-extra-source-files: stub.h, README, TODO
+extra-source-files: stub.h, README
 bug-reports:	mailto:mwotton@gmail.com
 Synopsis:	low level interface to CMPH
 Description:    a binding to the C-based CMPH library (http://cmph.sf.net).
@@ -19,7 +19,6 @@ library
         c-sources: stub.c
         includes: stub.h
         extra-libraries: cmph
-        extra-lib-dirs: /usr/local/lib
         build-depends:  base >=4.5 && <5.2
                       , bytestring
                       , containers
@@ -31,7 +30,6 @@ test-suite cmph-test
   main-is:             Main.hs
   other-modules:       Data.CMPHSpec
   build-depends:       cmph, base, hspec, QuickCheck, containers, bytestring, semigroups, text
-  extra-lib-dirs:      /usr/local/lib
   extra-libraries: cmph
 
 source-repository head
