@@ -1,2 +1,0 @@
-- some sensible way of changing the hashing algorithm
-- finalisers for C memory allocation - it probably leaks like crazy right now.

@@ -4,5 +4,5 @@
 #include <cmph.h>
 
 unsigned long stub_hash(cmph_t* hash, char * word);
-cmph_t * build_hash(char ** vector, int nkeys);
+cmph_t * build_hash(char ** vector, unsigned int nkeys);
 #endif
