@@ -16,16 +16,16 @@ matrix:
   include:
     - env: CABALVER=1.24 GHCVER=7.4.2
       compiler: ": #GHC 7.4.2"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-7.4.2,cmph-dev], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.4.2,libcmph-dev], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.6.3
       compiler: ": #GHC 7.6.3"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-7.6.3,cmph-dev], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.6.3,libcmph-dev], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.8.4
       compiler: ": #GHC 7.8.4"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-7.8.4,cmph-dev], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.8.4,libcmph-dev], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.10.3
       compiler: ": #GHC 7.10.3"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-7.10.3,cmph-dev], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.10.3,libcmph-dev], sources: [hvr-ghc]}}
 
 before_install:
  - unset CC
