@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings        #-}
 
 
-module Data.CMPH ( CMPH, hash, buildHash, size ) where
+module Data.CMPH ( CMPH, hash, fromList, size ) where
 import           Control.Exception      (bracket)
 import           Control.Monad          (guard, liftM)
 import           Data.Array
@@ -52,8 +52,8 @@ data CMPH = CMPH { rawHash :: Ptr ForeignHash
 --   can't have embedded nulls in the inserted strings
 --     return Nothing. Too hard.
 
-buildHash :: [BS.ByteString] -> IO (Maybe CMPH)
-buildHash input'
+fromList :: [BS.ByteString] -> IO (Maybe CMPH)
+fromList input'
   | all noNull input' = do
       let input = uniqued ("":"b":input')
       let len = fromIntegral $ length input
@@ -72,7 +72,9 @@ noNull = (==Nothing) . S.find (=='\NUL')
 
 hash :: CMPH-> BS.ByteString -> IO Word64
 hash cmph bs = do
-  (CULong w) <- S.useAsCStringLen ("a"<>bs) $ \(cstr,len) -> c_cmph_search (rawHash cmph) cstr (CUInt $ fromIntegral len)
+  let mungedString = {-# SCC mungeString #-} S.cons 'a' bs
+  (CULong w) <- {-# SCC useCstring #-} S.useAsCStringLen mungedString $ \(cstr,len) ->
+    {-# SCC cmph_search #-} c_cmph_search (rawHash cmph) cstr (CUInt $ fromIntegral len)
   return w
 
 freeCPtrs :: Word32

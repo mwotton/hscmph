@@ -33,16 +33,14 @@ spec = modifyMaxSuccess (const 1000) $  describe "cmph" $ do
     property
     $ forAll (stringListGen `suchThat` (not . null)) $ \strings' -> do
       let strings = map (\a  -> a <> "\NUL" <> a) strings'
-      ph <- CMPH.buildHash strings
+      ph <- CMPH.fromList strings
       fmap (const "cmph") ph `shouldSatisfy` isNothing
 
   it "does not generate dupes if the input contains no nulls " $ do
     property
---    $  (const 500)
-
     $ forAll stringListGen $ \strings -> do
       --      print ("strings", strings)
-      Just ph <-  CMPH.buildHash strings
+      Just ph <-  CMPH.fromList strings
       --      print ("builtstrings", strings)
       -- we unique them here: it's ok to pass in dupes, but for
       -- correctness purposes, it's the uniqued size we care about

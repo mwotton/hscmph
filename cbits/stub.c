@@ -41,7 +41,8 @@ cmph_t * build_hash(char ** vector, unsigned int nkeys) {
 }
 
 void free_ptrs(unsigned int nkeys, char ** strings) {
-  for (unsigned int i = 0; i<nkeys; i++) {
+  unsigned int i;
+  for (i = 0; i<nkeys; i++) {
     free(strings[i]);
   }
 }
