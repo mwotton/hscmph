@@ -3,7 +3,6 @@ module Data.CMPHSpec where
 
 import           Control.Monad         (guard)
 import qualified Data.ByteString       as BS
-import qualified Data.ByteString.Char8 as BS8
 import           Data.Char
 import qualified Data.CMPH             as CMPH
 import qualified Data.List             as DL
@@ -22,8 +21,8 @@ import           Test.QuickCheck
 
 main = hspec spec
 
-letterGen = arbitrary `suchThat` (\c -> c /= '\NUL')
-stringGen = BS8.pack <$> listOf letterGen
+byteGen = arbitrary `suchThat` (/= 0)
+stringGen = BS.pack <$> listOf byteGen
 stringListGen = listOf stringGen
 
 unique s = Set.size (Set.fromList s) == length s
