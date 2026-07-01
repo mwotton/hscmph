@@ -1,6 +1,6 @@
 Name:           cmph
 Version:        0.0.2
-Cabal-Version:  2.0
+Cabal-Version:  >=1.10
 License:	BSD3
 License-File:   LICENSE
 Build-Type:     Simple
@@ -33,7 +33,6 @@ test-suite cmph-test
   main-is:             Main.hs
   other-modules:       Data.CMPHSpec
   build-depends:       cmph, base, hspec, QuickCheck, containers, bytestring, semigroups, text
-  build-tool-depends:  hspec-discover:hspec-discover
   extra-libraries: cmph
 
 source-repository head
