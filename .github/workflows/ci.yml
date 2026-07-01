@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  cabal:
+    name: Cabal
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install CMPH
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcmph-dev
+
+      - name: Set up Haskell
+        uses: haskell-actions/setup@v2.11.0
+        with:
+          ghc-version: '9.12.2'
+          cabal-version: '3.16.0.0'
+
+      - name: Show tool versions
+        run: |
+          ghc --version
+          cabal --version
+
+      - name: Check package
+        run: cabal check
+
+      - name: Build
+        run: cabal v2-build all
+
+      - name: Test
+        run: cabal v2-test all --test-show-details=direct
+
+      - name: Build source distribution
+        run: cabal v2-sdist
