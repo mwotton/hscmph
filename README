@@ -1,1 +1,6 @@
 This is a thin haskell wrapper around the CMPH library, obtainable at http://cmph.sf.net.
+
+You need the CMPH C headers and library installed before building this package.
+On Debian/Ubuntu, install them with:
+
+    sudo apt-get install libcmph-dev
